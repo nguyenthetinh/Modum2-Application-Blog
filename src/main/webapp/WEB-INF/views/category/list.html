@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Provinces</title>
+</head>
+<body>
+
+<span>
+    <a href="/create-category">
+        <button>Create new category</button>
+    </a>
+</span>
+
+<span>
+<a href="/">
+    <button>Blogs Manager</button>
+</a>
+</span>
+
+<h1>Categories</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="category : ${categories}">
+        <tr>
+            <td th:text="${category.name}"></td>
+            <td><a th:href="@{/edit-category/__${category.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-category/__${category.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<footer> &copy; The Tinh</footer>
+
+</body>
+</html>

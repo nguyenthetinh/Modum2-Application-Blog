@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View blog</title>
+</head>
+
+<div>
+    <p>
+        <a href="/">
+            <button>Blog list</button>
+        </a>
+</div>
+<body>
+
+<form th:action="@{/edit-blog}" th:object="${blog}" method="get">
+
+    <h1>Welcome to <span th:text="${blog.writer}"></span>'s blog</h1>
+    <br>
+
+    <h2 th:text="${blog.title}"></h2>
+    <br>
+
+    <p th:text="${blog.content}"></p>
+
+    <div id="writer">
+        Wrote by : <span th:text="${blog.writer}"></span>
+    </div>
+</form>
+</body>
+</html>

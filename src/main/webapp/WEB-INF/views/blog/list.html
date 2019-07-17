@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog List</title>
+</head>
+
+<body>
+<br>
+<h1>Blog Tinh</h1>
+<br>
+<span>
+    <a href="/create-blog">
+        <button>New blog</button>
+    </a>
+</span>
+
+<span>
+<a href="/categories">
+    <button>Categories list</button>
+</a>
+</span>
+
+<div>
+    <form>
+        <input name="s" type="text"/>
+        <input type="submit" value="Search"/>
+        <br/>
+    </form>
+    <br>
+</div>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Writer</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    <th:block th:each="blog : ${blogs}">
+        <tr>
+            <td th:text="${blog.title}"></td>
+            <td th:text="${blog.writer}"></td>
+            <td th:text="${blog.category.name}"></td>
+            <td><a th:href="@{/edit-blog/__${blog.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-blog/__${blog.id}__ }">Delete</a></td>
+            <td><a th:href="@{/view-blog/__${blog.id}__ }">View</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{'/'(page=${blogs.number - 1})}" th:if="${blogs.hasPrevious()}">Previous</a>
+    <span th:text="${blogs.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>
+    <a th:href="@{'/'(page=${blogs.number + 1})}" th:if="${blogs.hasNext()}">Next</a>
+</div>
+<footer> &copy; The Tinh</footer>
+</body>
+</html>
